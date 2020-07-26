@@ -57,7 +57,7 @@ class API(object):
 
 
     def handle_request(self, request):
-        """"""
+        """请求调度"""
         response = Response()
         handler, kwargs = self.find_handler(request.path)
 
@@ -90,7 +90,7 @@ class API(object):
         response.text = "Not Found"
 
     def route(self, path):
-
+        # 添加路由的装饰器
         def wrapper(handler):
             self.add_route(path, handler)
             return handler

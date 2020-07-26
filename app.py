@@ -31,7 +31,7 @@ app.add_route("/handler2", handler2)
 
 @app.route("/index")
 def index(req, resp):
-    template =  app.template("index.html", context={"name": "ayuliao", "title": "第一个网页"})
+    template =  app.template("index.html", context={"name": "二两", "title": "ToyWebF"})
     # resp.body需要bytes，template方法返回的是unicode string，所以需要编码
     resp.body = template.encode()
 
@@ -52,4 +52,13 @@ class SimpleCustomMiddleware(Middleware):
     def process_response(self, req, resp):
         print("处理response", req.url)
 
+
+class SimpleCustomMiddleware2(Middleware):
+    def process_request(self, req):
+        print("处理request2", req.url)
+
+    def process_response(self, req, resp):
+        print("处理response2", req.url)
+
 app.add_middleware(SimpleCustomMiddleware)
+app.add_middleware(SimpleCustomMiddleware2)
